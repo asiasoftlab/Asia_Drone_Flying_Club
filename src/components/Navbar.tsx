@@ -38,7 +38,7 @@ const navigationData: NavItem[] = [
       {
         name: "Drone Soccer",
         href: "#drone-soccer",
-        tag: "FIDA & Keralan League",
+        tag: "FIDA & Keralan Leangkldwlgkhgue",
         description: "Fast-paced indoor ball-drone team sport with full protective cages and radio control precision.",
       },
       {
