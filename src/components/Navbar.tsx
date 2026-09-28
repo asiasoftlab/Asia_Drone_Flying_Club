@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDown, ArrowRight } from "lucide-react";
 
 interface SubItem {
+
   name: string;
   href: string;
   description: string;
@@ -74,7 +75,7 @@ const navigationData: NavItem[] = [
     ctaTitle: "Need custom UAV gear or build kits?",
     ctaDesc: "Explore genuine drone kits, flight controllers, transmitters, and FPV goggles tested by our pilots.",
     ctaBtn: "VIEW STORE",
-    ctaHref: "#contact",
+    ctaHref: "https://asiadronestore.com",
     items: [
       {
         name: "FPV Racing Drones",
@@ -102,35 +103,8 @@ const navigationData: NavItem[] = [
       },
     ],
   },
-  {
-    name: "Events",
-    href: "#events",
-    hasDropdown: true,
-    ctaTitle: "Experience the thrill of live events!",
-    ctaDesc: "Book seats for state-wide fly-ins, weekend racing meets, and school drone expos.",
-    ctaBtn: "SEE CALENDAR",
-    ctaHref: "#contact",
-    items: [
-      {
-        name: "Kerala Drone Championship",
-        href: "#event-championship",
-        tag: "Annual Flagship",
-        description: "State tournament featuring FPV racing tracks, night glow flights, and cash prizes.",
-      },
-      {
-        name: "Weekend Drone Meetups",
-        href: "#event-meetups",
-        tag: "Open to All",
-        description: "Casual weekend flying sessions, aerial photo-walks, and community pilot meetups.",
-      },
-      {
-        name: "Workshops & Bootcamps",
-        href: "#event-workshops",
-        tag: "Hands-On",
-        description: "3-day intensive workshops covering DGCA rules, assembly, and autonomous missions.",
-      },
-    ],
-  },
+  
+  { name: "Events", href: "#events" },
   { name: "About", href: "#about" },
   { name: "Gallery", href: "#gallery" },
   { name: "Contact", href: "#contact" },
@@ -139,22 +113,50 @@ const navigationData: NavItem[] = [
 export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [activeSubIndex, setActiveSubIndex] = useState<number>(0);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const activeNavItem = navigationData.find((item) => item.name === activeDropdown);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-      className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white/40 backdrop-blur-md shadow-md border-b border-white/20"
+          : "bg-white/95 backdrop-blur-sm border-b border-slate-200"
+      }`}
       onMouseLeave={() => {
         setActiveDropdown(null);
         setActiveSubIndex(0);
       }}
     >
+
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-30">
           {/* Brand / Logo (Left) */}
           <Link href="#home" className="flex items-center gap-3 py-2 group shrink-0">
             <div className="relative h-50 w-44 sm:w-56 transition-transform duration-200 group-hover:scale-[1.02]">
-              <Image src="/logo.png" alt="Asia Drone Flying Club Kerala by Asia Softlab India" fill priority className="object-contain object-left" />
+              <Image
+                src="/logo.png"
+                alt="Asia Drone Flying Club Kerala by Asia Softlab India"
+                fill
+                sizes="(max-width: 640px) 176px, 224px"
+                priority
+                className="object-contain object-left"
+              />
             </div>
           </Link>
 
@@ -230,7 +232,6 @@ export default function Navbar() {
         <div className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-2xl shadow-slate-900/15 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div className="grid grid-cols-12 gap-6 lg:gap-8 items-stretch">
-              {/* Left Promo / CTA Box */}
               <div className="col-span-12 lg:col-span-3 flex flex-col justify-between p-7 rounded-2xl bg-slate-50 border border-slate-200/80">
                 <div className="space-y-3">
                   <span className="text-[11px] font-bold tracking-widest uppercase text-blue-700">
@@ -250,7 +251,7 @@ export default function Navbar() {
                     className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold tracking-wider uppercase text-white bg-orange-600 hover:bg-orange-500 shadow-md shadow-orange-600/20 transition-all hover:-translate-y-0.5"
                   >
                     <span>{activeNavItem.ctaBtn || "LET'S TALK"}</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
@@ -284,12 +285,9 @@ export default function Navbar() {
                 })}
               </div>
 
-              {/* Right Interactive Preview Card */}
               <div className="col-span-12 lg:col-span-5 relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950 p-6 text-white flex flex-col justify-between shadow-inner min-h-[260px]">
-                {/* Glow highlight */}
                 <div className="absolute -top-10 -right-10 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
                 <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-sky-500/15 rounded-full blur-3xl pointer-events-none" />
-
                 <div className="relative z-10 space-y-3">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold text-sky-300">
                     <span>{activeNavItem.items[activeSubIndex]?.tag}</span>
@@ -313,13 +311,14 @@ export default function Navbar() {
                     className="text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1 transition-colors"
                   >
                     <span>Learn More</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    <ArrowRight className="w-4 h-4" />
                   </Link>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      )}    </header>
+      )}    
+    </header>
   );
 }
