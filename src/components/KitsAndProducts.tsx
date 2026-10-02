@@ -86,7 +86,7 @@ export default function KitsAndProducts() {
       : productsData.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="products" className="w-full bg-white text-slate-900 py-24 sm:py-32 px-6 sm:px-10 lg:px-16 relative overflow-hidden border-t border-slate-100">
+    <section id="products" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
@@ -102,7 +102,7 @@ export default function KitsAndProducts() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-slate-950 text-white hover:bg-blue-700 transition-colors shadow-md"
             >
               <ShoppingCart className="w-5 h-5" />
@@ -134,7 +134,7 @@ export default function KitsAndProducts() {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative rounded-xl bg-white hover:bg-slate-50/50 border border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50"
+              className="group relative bg-white hover:bg-slate-50/50 border border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50"
             >
               <div>
                 {/* Product Image */}
@@ -149,7 +149,7 @@ export default function KitsAndProducts() {
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 pointer-events-none" />
 
                   {/* Badge */}
-                  <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 text-slate-900 text-[11px] font-semibold shadow-sm">
+                  <span className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-md border border-slate-200 text-slate-900 text-[11px] font-semibold shadow-sm">
                     {product.badge}
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default function KitsAndProducts() {
               {/* Card Footer CTA */}
               <div className="p-6 pt-0 mt-4">
                 <Link
-                  href={product.href}
+                  href="/contact"
                   className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-lg text-xs sm:text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-950 hover:text-white border border-slate-200 hover:border-transparent transition-all duration-200 group/btn shadow-sm"
                 >
                   <span>Request Product Quote</span>

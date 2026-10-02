@@ -45,7 +45,7 @@ const cardsData: DroneSoccerCard[] = [
 
 export default function WhatIsDroneSoccer() {
   return (
-    <section className="w-full bg-white text-slate-900 py-20 sm:py-28 px-6 sm:px-10 lg:px-16 transition-colors">
+    <section id="drone-soccer" className="w-full bg-white text-slate-900 pt-20 pb-12 sm:pt-28 sm:pb-16 px-6 sm:px-10 lg:px-16 transition-colors">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
@@ -62,14 +62,10 @@ export default function WhatIsDroneSoccer() {
           {cardsData.map((card, index) => (
             <div key={index} className="flex flex-col">
               {/* Image with rounded corners */}
-              <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden shadow-sm bg-slate-100 mb-6 group border border-slate-100">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
+              <div className="relative w-full aspect-[4/3] overflow-hidden shadow-sm bg-slate-100 mb-6 group border border-slate-100">
+                <Image src={card.image} alt={card.title} fill 
+                className="object-cover object-center transform transition-transform duration-500 group-hover:scale-105" 
+                sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
 
               {/* Card Title */}

@@ -26,43 +26,44 @@ interface NavItem {
 }
 
 const navigationData: NavItem[] = [
-  { name: "Home", href: "#home" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/#drone-soccer" },
   {
     name: "Drone Sports",
-    href: "#drone-sports",
+    href: "/#where-you-fit",
     hasDropdown: true,
     ctaTitle: "Ready to take flight in competitive sports?",
     ctaDesc: "Join Asia Drone Flying Club's official league and training programs across Kerala.",
     ctaBtn: "REGISTER NOW",
-    ctaHref: "#contact",
+    ctaHref: "/contact",
     items: [
       {
         name: "Drone Soccer",
-        href: "#drone-soccer",
-        tag: "FIDA & Keralan Leangkldwlgkhgue",
+        href: "/#drone-soccer",
+        tag: "FIDA & Kerala League",
         description: "Fast-paced indoor ball-drone team sport with full protective cages and radio control precision.",
       },
       {
         name: "FPV Racing",
-        href: "#fpv-racing",
+        href: "/#products",
         tag: "High-Speed Agility",
         description: "Adrenaline-fueled first-person-view obstacle track racing with custom tuned micro & 5-inch quads.",
       },
       {
         name: "Drone Flying",
-        href: "#drone-flying",
+        href: "/#where-you-fit",
         tag: "Pilot Skills & Fun",
         description: "Precision obstacle navigation, freestyle maneuvers, and recreational group fly-in excursions.",
       },
       {
         name: "Drone Competitions",
-        href: "#drone-competitions",
+        href: "/#where-you-fit",
         tag: "Championships & Cups",
         description: "Annual state-level and inter-college UAV tournaments, obstacle courses, and speed challenges.",
       },
       {
         name: "Training",
-        href: "#training",
+        href: "/#where-you-fit",
         tag: "DGCA & Sport Certified",
         description: "Hands-on pilot mentoring, simulator labs, and advanced sport flight maneuvers from veteran pilots.",
       },
@@ -70,7 +71,7 @@ const navigationData: NavItem[] = [
   },
   {
     name: "Products",
-    href: "#products",
+    href: "/#products",
     hasDropdown: true,
     ctaTitle: "Need custom UAV gear or build kits?",
     ctaDesc: "Explore genuine drone kits, flight controllers, transmitters, and FPV goggles tested by our pilots.",
@@ -79,35 +80,34 @@ const navigationData: NavItem[] = [
     items: [
       {
         name: "FPV Racing Drones",
-        href: "#products-fpv",
+        href: "/#products",
         tag: "Pro RTF & BNF",
         description: "Carbon fiber frames, brushless motors, and digital HD video transmission systems.",
       },
       {
         name: "Drone Soccer Spheres",
-        href: "#products-soccer",
+        href: "/#products",
         tag: "Certified Spheres",
         description: "Class 20 & Class 40 protective cage drones engineered for high-impact indoor matches.",
       },
       {
         name: "DIY STEM & Training Kits",
-        href: "#products-kits",
+        href: "/#products",
         tag: "Education",
         description: "Complete build kits with solder pads, ESCs, and guided assembly manuals for students.",
       },
       {
         name: "Goggles & Transmitters",
-        href: "#products-gear",
+        href: "/#products",
         tag: "Radio & Video",
         description: "ELRS / Crossfire transmitters, HD FPV goggles, lipo batteries, and field chargers.",
       },
     ],
   },
   
-  { name: "Events", href: "#events" },
-  { name: "About", href: "#about" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Contact", href: "#contact" },
+  { name: "Events", href: "/#where-you-fit" },
+  // { name: "Gallery", href: "#gallery" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -147,16 +147,12 @@ export default function Navbar() {
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-30">
           {/* Brand / Logo (Left) */}
-          <Link href="#home" className="flex items-center gap-3 py-2 group shrink-0">
+          <Link href="/" className="flex items-center gap-3 py-2 group shrink-0">
             <div className="relative h-50 w-44 sm:w-56 transition-transform duration-200 group-hover:scale-[1.02]">
-              <Image
-                src="/logo.png"
-                alt="Asia Drone Flying Club Kerala by Asia Softlab India"
-                fill
-                sizes="(max-width: 640px) 176px, 224px"
-                priority
-                className="object-contain object-left"
-              />
+              <Image src="/logo.png" alt="Asia Drone Flying Club Kerala by Asia Softlab India" fill 
+              sizes="(max-width: 640px) 176px, 224px"
+              priority
+              className="object-contain object-left" />
             </div>
           </Link>
 
@@ -218,7 +214,7 @@ export default function Navbar() {
           {/* Right Action Button */}
           <div className="hidden sm:flex items-center gap-3">
             <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex items-center justify-center px-6 py-2.5 rounded-md text-sm font-bold tracking-widest uppercase text-white bg-slate-950 hover:bg-blue-700 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               GET IN TOUCH

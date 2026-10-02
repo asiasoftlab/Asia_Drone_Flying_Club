@@ -41,7 +41,7 @@ const paths: PathOption[] = [
       "League entry eligibility",
     ],
     ctaText: "Explore Drone Kits",
-    ctaHref: "#kits",
+    ctaHref: "/#products",
   },
   {
     id: "schools",
@@ -60,11 +60,11 @@ const paths: PathOption[] = [
       "Inter-collegiate championship access",
     ],
     ctaText: "Bring to Your Campus",
-    ctaHref: "#education",
+    ctaHref: "/contact",
   },
   {
     id: "corporates",
-    badge: "Team Building & Events",
+    badge: "Team Building",
     title: "Corporate & Brands",
     subtitle: "High-energy employee engagements & activations",
     description: "Host adrenaline-packed drone soccer team-building battles, experiential brand showcases, and employee tech days at your venue or ours.",
@@ -79,7 +79,7 @@ const paths: PathOption[] = [
       "Turnkey setup with pro referees",
     ],
     ctaText: "Plan Corporate Event",
-    ctaHref: "#corporate",
+    ctaHref: "/contact",
   },
   {
     id: "venues",
@@ -98,13 +98,13 @@ const paths: PathOption[] = [
       "Complete operations & referee manual",
     ],
     ctaText: "Monetize Your Venue",
-    ctaHref: "#venues",
+    ctaHref: "/contact",
   },
 ];
 
 export default function WhereDoYouFitIn() {
   return (
-    <section id="where-you-fit" className="w-full bg-white text-slate-900 py-24 sm:py-32 px-6 sm:px-10 lg:px-16 relative overflow-hidden border-t border-slate-100">
+    <section id="where-you-fit" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
@@ -125,15 +125,15 @@ export default function WhereDoYouFitIn() {
             return (
               <div
                 key={path.id}
-                className={`group relative rounded-xl bg-white hover:bg-slate-50/50 border border-slate-200/80 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-sm ${path.borderGlow}`}
+                className={`group relative bg-white hover:bg-slate-50/50 border border-slate-200/80 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-sm ${path.borderGlow}`}
               >
                 <div>
                   {/* Top Badge & Custom Icon */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className={`p-3.5 rounded-lg border ${path.iconBg} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
+                    <div className={`p-3.5 border ${path.iconBg} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
                       <Icon className="w-7 h-7 transition-transform duration-300" />
                     </div>
-                    <span className="text-[13px] font-semibold tracking-wide px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
+                    <span className="text-[13px] font-semibold tracking-wide px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
                       {path.badge}
                     </span>
                   </div>
