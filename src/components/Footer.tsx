@@ -18,14 +18,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
           {/* Column 1: Brand & Bio */}
           <div className="lg:col-span-4 space-y-5">
-            <Link href="/" className="inline-block group">
-              <div className="relative h-20 w-64 sm:w-72 transition-transform duration-200 group-hover:scale-[1.02]">
+            <Link href="/" className="inline-flex items-center group">
+              <div className="transition-transform duration-200 group-hover:scale-[1.02]">
                 <Image
                   src="/logo.png"
-                  alt="Asia Drone Flying Club"
-                  fill
-                  sizes="(max-width: 640px) 256px, 288px"
-                  className="object-contain object-left"
+                  alt="Asia Drone Flying Club Kerala by Asia Softlab India"
+                  width={270}
+                  height={102}
+                  className="w-56 sm:w-64 md:w-72 h-auto object-contain"
                   priority
                 />
               </div>
@@ -100,6 +100,11 @@ export default function Footer() {
               <li>
                 <Link href="/" className="hover:text-blue-600 transition-colors">
                   Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-blue-600 transition-colors">
+                  About Us
                 </Link>
               </li>
               <li>
@@ -214,7 +219,7 @@ export default function Footer() {
             . All rights reserved.
           </p>
           <div className="flex items-center gap-6 font-medium">
-            <Link href="/#faq" className="hover:text-blue-600 transition-colors">
+            <Link href="/privacy-policy" className="hover:text-blue-600 transition-colors">
               Privacy Policy
             </Link>
             <Link href="/#faq" className="hover:text-blue-600 transition-colors">

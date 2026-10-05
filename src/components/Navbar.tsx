@@ -27,7 +27,7 @@ interface NavItem {
 
 const navigationData: NavItem[] = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/#drone-soccer" },
+  { name: "About", href: "/about" },
   {
     name: "Drone Sports",
     href: "/#where-you-fit",
@@ -148,11 +148,15 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-30">
           {/* Brand / Logo (Left) */}
           <Link href="/" className="flex items-center gap-3 py-2 group shrink-0">
-            <div className="relative h-50 w-44 sm:w-56 transition-transform duration-200 group-hover:scale-[1.02]">
-              <Image src="/logo.png" alt="Asia Drone Flying Club Kerala by Asia Softlab India" fill 
-              sizes="(max-width: 640px) 176px, 224px"
-              priority
-              className="object-contain object-left" />
+            <div className="transition-transform duration-200 group-hover:scale-[1.02]">
+              <Image 
+                src="/logo.png" 
+                alt="Asia Drone Flying Club Kerala by Asia Softlab India" 
+                width={270}
+                height={102}
+                priority
+                className="w-44 sm:w-52 md:w-60 h-auto object-contain" 
+              />
             </div>
           </Link>
 
