@@ -105,7 +105,7 @@ const paths: PathOption[] = [
 export default function WhereDoYouFitIn() {
   return (
     <section id="where-you-fit" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-10xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-normal tracking-tight text-slate-950 mb-5">

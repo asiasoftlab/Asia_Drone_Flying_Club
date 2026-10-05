@@ -46,7 +46,7 @@ const cardsData: DroneSoccerCard[] = [
 export default function WhatIsDroneSoccer() {
   return (
     <section id="drone-soccer" className="w-full bg-white text-slate-900 pt-20 pb-12 sm:pt-28 sm:pb-16 px-6 sm:px-10 lg:px-16 transition-colors">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-10xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
           <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-normal tracking-tight text-slate-950 mb-5">
