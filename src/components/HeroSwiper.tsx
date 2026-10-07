@@ -28,12 +28,12 @@ const slides: SlideData[] = [
   },
 ];
 
-
-const SLIDE_DURATION = 4000; // 4 seconds per slide
+const SLIDE_DURATION = 4500; // 4.5 seconds per slide
 
 export default function HeroSwiper() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
   const nextSlide = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % slides.length);
@@ -52,32 +52,38 @@ export default function HeroSwiper() {
     return () => clearInterval(timer);
   }, [currentIndex, nextSlide]);
 
-  // Touch handlers for mobile swiping
+  // Touch handlers for mobile swiping with minimum swipe distance threshold
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.touches[0].clientX);
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStart === null) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
 
-    if (diff > 50) {
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 40;
+    const isRightSwipe = distance < -40;
+
+    if (isLeftSwipe) {
       nextSlide();
-    } else if (diff < -50) {
+    } else if (isRightSwipe) {
       prevSlide();
     }
-    setTouchStart(null);
   };
 
   return (
-    <div
+    <section
       id="home"
-      className="relative w-full h-screen min-h-[600px] overflow-hidden bg-black select-none"
+      aria-label="Hero Carousel"
+      className="relative w-full h-[65vh] sm:h-[85vh] lg:h-screen min-h-[460px] max-h-[1080px] overflow-hidden bg-slate-950 select-none"
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-
       {/* Slides */}
       {slides.map((slide, index) => {
         const isActive = index === currentIndex;
@@ -91,7 +97,7 @@ export default function HeroSwiper() {
           >
             {/* Background Image with Zoom Effect */}
             <div
-              className={`relative w-full h-full transform transition-transform duration-[6000ms] ease-out ${
+              className={`absolute inset-0 w-full h-full transform transition-transform duration-[6000ms] ease-out ${
                 isActive ? "scale-105" : "scale-100"
               }`}
             >
@@ -101,50 +107,53 @@ export default function HeroSwiper() {
                 fill
                 priority={index === 0}
                 className="object-cover object-center"
-                sizes="100vw"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
               />
             </div>
+            {/* Subtle Gradient Overlays for mobile clarity */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 pointer-events-none" />
           </div>
         );
       })}
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows (Hidden on very small screens, visible on hover/tap) */}
       <button
         type="button"
         onClick={prevSlide}
         aria-label="Previous Slide"
-        className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white/80 hover:text-white backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer group"
+        className="hidden sm:flex absolute left-3 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-30 p-2.5 sm:p-3 rounded-full bg-black/40 hover:bg-black/70 text-white/90 hover:text-white backdrop-blur-md border border-white/15 hover:border-white/40 transition-all duration-300 cursor-pointer group shadow-lg active:scale-95"
       >
-        <ChevronLeft className="w-6 h-6 transform group-hover:-translate-x-0.5 transition-transform" />
+        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:-translate-x-0.5 transition-transform" />
       </button>
+
       <button
         type="button"
         onClick={nextSlide}
         aria-label="Next Slide"
-        className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 hover:bg-black/70 text-white/80 hover:text-white backdrop-blur-md border border-white/10 hover:border-white/30 transition-all duration-300 cursor-pointer group"
+        className="hidden sm:flex absolute right-3 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-30 p-2.5 sm:p-3 rounded-full bg-black/40 hover:bg-black/70 text-white/90 hover:text-white backdrop-blur-md border border-white/15 hover:border-white/40 transition-all duration-300 cursor-pointer group shadow-lg active:scale-95"
       >
-        <ChevronRight className="w-6 h-6 transform group-hover:translate-x-0.5 transition-transform" />
+        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:translate-x-0.5 transition-transform" />
       </button>
 
-      {/* Bottom Progress Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+      {/* Bottom Progress / Pagination Indicators */}
+      <div className="absolute bottom-5 sm:bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 sm:gap-3 bg-black/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
         {slides.map((_, index) => (
           <button
             key={index}
             type="button"
             onClick={() => setCurrentIndex(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className="group relative h-2.5 rounded-full transition-all duration-500 overflow-hidden cursor-pointer"
-            style={{ width: currentIndex === index ? "48px" : "12px" }}
+            className="group relative h-2 sm:h-2.5 rounded-full transition-all duration-500 overflow-hidden cursor-pointer"
+            style={{ width: currentIndex === index ? "32px" : "8px" }}
           >
             <div
               className={`w-full h-full rounded-full transition-colors duration-300 ${
-                currentIndex === index ? "bg-blue-500" : "bg-white/30 group-hover:bg-white/50"
+                currentIndex === index ? "bg-blue-500 shadow-sm shadow-blue-500/50" : "bg-white/40 group-hover:bg-white/70"
               }`}
             />
           </button>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

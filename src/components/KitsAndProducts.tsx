@@ -19,7 +19,7 @@ interface ProductKit {
 }
 
 const categories = [
-  { id: "all", label: "All Products & Kits" },
+  { id: "all", label: "All Products" },
   { id: "soccer", label: "Drone Soccer" },
   { id: "stem", label: "STEM DIY Kits" },
   { id: "fpv", label: "FPV Racing" },
@@ -86,41 +86,46 @@ export default function KitsAndProducts() {
       : productsData.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="products" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
-      <div className="max-w-10xl mx-auto relative z-10">
+    <section 
+      id="products" 
+      className="w-full bg-white text-slate-900 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-16 relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-5">
           <div className="max-w-2xl">
-            <h2 className="text-3xl sm:text-5xl lg:text-[52px] font-serif font-normal tracking-tight text-slate-950 mb-4 leading-tight">
+            <span className="inline-block text-[11px] sm:text-xs font-bold tracking-widest uppercase text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3">
+              Store & Gear
+            </span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight text-slate-950 mb-3 leading-tight">
               Kits & Products
             </h2>
-
-            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed">
               Certified drone soccer balls, educational build kits, and FPV championship racing gear tested and certified by Asia Drone Flying Club.
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center shrink-0">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-slate-950 text-white hover:bg-blue-700 transition-colors shadow-md"
+              className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-5 py-3 rounded-xl text-xs sm:text-sm font-bold bg-slate-950 text-white hover:bg-blue-700 transition-colors shadow-sm active:scale-[0.98]"
             >
-              <ShoppingCart className="w-5 h-5" />
+              <ShoppingCart className="w-4 h-4" />
               <span>Bulk Institution Inquiry</span>
             </Link>
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-4 mb-10 no-scrollbar">
+        {/* Category Filters (Horizontal scrollable with smooth touch) */}
+        <div className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-3 mb-6 sm:mb-8 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               onClick={() => setActiveCategory(cat.id)}
-              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer shrink-0 ${
                 activeCategory === cat.id
-                  ? "bg-slate-950 text-white font-semibold shadow-sm"
+                  ? "bg-slate-950 text-white font-semibold shadow-xs"
                   : "bg-slate-100 text-slate-600 hover:text-slate-950 hover:bg-slate-200 border border-slate-200/80"
               }`}
             >
@@ -130,47 +135,45 @@ export default function KitsAndProducts() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-stretch">
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="group relative bg-white hover:bg-slate-50/50 border border-slate-200/80 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50"
+              className="group relative bg-white border border-slate-200/90 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xs hover:shadow-md"
             >
               <div>
                 {/* Product Image */}
-                <div className="relative w-full aspect-[4/3] bg-slate-100 overflow-hidden">
+                <div className="relative w-full aspect-[16/10] sm:aspect-[4/3] bg-slate-100 overflow-hidden">
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     className="object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-60 pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-50 pointer-events-none" />
 
                   {/* Badge */}
-                  <span className="absolute top-3 left-3 px-3 py-1 bg-white/90 backdrop-blur-md border border-slate-200 text-slate-900 text-[11px] font-semibold shadow-sm">
+                  <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-white/95 backdrop-blur-md rounded-md border border-slate-200/80 text-slate-900 text-[10px] sm:text-[11px] font-semibold shadow-xs">
                     {product.badge}
                   </span>
                 </div>
 
                 {/* Body Content */}
-                <div className="p-6">
-                  <div className="flex items-baseline justify-between mb-2">
-                    <h3 className="text-xl font-semibold text-slate-950 group-hover:text-blue-700 transition-colors">
-                      {product.name}
-                    </h3>
-                  </div>
+                <div className="p-4 sm:p-5">
+                  <h3 className="text-base sm:text-lg font-semibold text-slate-950 group-hover:text-blue-700 transition-colors mb-1">
+                    {product.name}
+                  </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed mb-3 sm:mb-4 line-clamp-2">
                     {product.tagline}
                   </p>
 
                   {/* Specs List */}
-                  <div className="border-t border-slate-100 pt-4 space-y-2 mb-2">
+                  <div className="border-t border-slate-100 pt-3 space-y-1.5 mb-1">
                     {product.specs.map((spec, sIndex) => (
-                      <div key={sIndex} className="flex items-start text-xs text-slate-700">
-                        <Check className="w-4 h-4 text-emerald-600 mr-2 shrink-0 mt-0.5" />
+                      <div key={sIndex} className="flex items-start text-[11px] sm:text-xs text-slate-700 leading-snug">
+                        <Check className="w-3.5 h-3.5 text-emerald-600 mr-1.5 shrink-0 mt-0.5" />
                         <span>{spec}</span>
                       </div>
                     ))}
@@ -179,13 +182,13 @@ export default function KitsAndProducts() {
               </div>
 
               {/* Card Footer CTA */}
-              <div className="p-6 pt-0 mt-4">
+              <div className="p-4 sm:p-5 pt-0 mt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 w-full py-3 rounded-lg text-xs sm:text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-950 hover:text-white border border-slate-200 hover:border-transparent transition-all duration-200 group/btn shadow-sm"
+                  className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-slate-950 hover:text-white border border-slate-200 hover:border-transparent transition-all duration-200 group/btn shadow-xs active:scale-[0.98]"
                 >
                   <span>Request Product Quote</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
                 </Link>
               </div>
             </div>

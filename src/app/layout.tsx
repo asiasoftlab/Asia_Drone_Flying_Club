@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -8,6 +8,13 @@ const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#ffffff",
+};
 
 export const metadata: Metadata = {
   title: "Asia Drone Flying Club Kerala | by Asia Softlab India",
@@ -20,16 +27,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${poppins.variable} scroll-smooth antialiased font-sans`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <html 
+      lang="en" 
+      data-scroll-behavior="smooth" 
+      suppressHydrationWarning
+      className={`${poppins.variable} scroll-smooth antialiased font-sans`}
+    >
+      <body 
+        suppressHydrationWarning
+        className="min-h-screen bg-white text-slate-900 flex flex-col font-sans overflow-x-hidden selection:bg-blue-600 selection:text-white"
+      >
         {children}
       </body>
     </html>

@@ -33,7 +33,7 @@ const paths: PathOption[] = [
     icon: TbDrone,
     accentGradient: "from-blue-600 via-sky-500 to-cyan-500",
     iconBg: "bg-blue-50 text-blue-600 border-blue-200",
-    borderGlow: "hover:border-blue-300 hover:shadow-xl hover:shadow-blue-500/10",
+    borderGlow: "hover:border-blue-300 hover:shadow-lg hover:shadow-blue-500/10",
     benefits: [
       "Ready-to-fly & DIY ball drone kits",
       "Spare batteries, cages & propellers",
@@ -52,7 +52,7 @@ const paths: PathOption[] = [
     icon: FaGraduationCap,
     accentGradient: "from-emerald-600 via-teal-500 to-cyan-600",
     iconBg: "bg-emerald-50 text-emerald-600 border-emerald-200",
-    borderGlow: "hover:border-emerald-300 hover:shadow-xl hover:shadow-emerald-500/10",
+    borderGlow: "hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-500/10",
     benefits: [
       "Certified STEM & UAV curriculum",
       "Turnkey indoor netted arena setups",
@@ -71,7 +71,7 @@ const paths: PathOption[] = [
     icon: FaBuildingUser,
     accentGradient: "from-purple-600 via-violet-600 to-indigo-600",
     iconBg: "bg-purple-50 text-purple-600 border-purple-200",
-    borderGlow: "hover:border-purple-300 hover:shadow-xl hover:shadow-purple-500/10",
+    borderGlow: "hover:border-purple-300 hover:shadow-lg hover:shadow-purple-500/10",
     benefits: [
       "Custom corporate team tournaments",
       "Zero experience required for staff",
@@ -90,7 +90,7 @@ const paths: PathOption[] = [
     icon: MdOutlineStadium,
     accentGradient: "from-amber-600 via-orange-500 to-rose-500",
     iconBg: "bg-amber-50 text-amber-600 border-amber-200",
-    borderGlow: "hover:border-amber-300 hover:shadow-xl hover:shadow-amber-500/10",
+    borderGlow: "hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/10",
     benefits: [
       "Purchase or revenue-share lease models",
       "Pack-down / set-up under 2 hours",
@@ -104,62 +104,67 @@ const paths: PathOption[] = [
 
 export default function WhereDoYouFitIn() {
   return (
-    <section id="where-you-fit" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
-      <div className="max-w-10xl mx-auto relative z-10">
+    <section 
+      id="where-you-fit" 
+      className="w-full bg-slate-50/50 text-slate-900 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-16 relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <h2 className="text-3xl sm:text-5xl lg:text-[54px] font-serif font-normal tracking-tight text-slate-950 mb-5">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12 lg:mb-16">
+          <span className="inline-block text-[11px] sm:text-xs font-bold tracking-widest uppercase text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3">
+            Choose Your Category
+          </span>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight text-slate-950 mb-3 sm:mb-4">
             Where Do You Fit In?
           </h2>
-
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
-            Kit buyer, school, corporate, or venue : choose your path and get started with just one click.
+          <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed max-w-xl mx-auto px-2">
+            Kit buyer, school, corporate, or venue: choose your path and get started with just one click.
           </p>
         </div>
 
-        {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 items-stretch">
+        {/* 4 Cards Responsive Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6 items-stretch">
           {paths.map((path) => {
             const Icon = path.icon;
 
             return (
               <div
                 key={path.id}
-                className={`group relative bg-white hover:bg-slate-50/50 border border-slate-200/80 p-7 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-sm ${path.borderGlow}`}
+                className={`group relative bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-xs hover:shadow-md ${path.borderGlow}`}
               >
                 <div>
                   {/* Top Badge & Custom Icon */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div className={`p-3.5 border ${path.iconBg} transition-all duration-300 group-hover:scale-110 shadow-sm`}>
-                      <Icon className="w-7 h-7 transition-transform duration-300" />
+                  <div className="flex items-center justify-between gap-2 mb-4 sm:mb-5">
+                    <div className={`p-2.5 sm:p-3 rounded-xl border ${path.iconBg} transition-all duration-300 group-hover:scale-105 shadow-xs`}>
+                      <Icon className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300" />
                     </div>
-                    <span className="text-[13px] font-semibold tracking-wide px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
+                    <span className="text-[10px] sm:text-[11px] font-semibold tracking-wide px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/80 shrink-0">
                       {path.badge}
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-2xl font-semibold text-slate-950 mb-2 group-hover:text-blue-700 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-semibold text-slate-950 mb-1 group-hover:text-blue-700 transition-colors">
                     {path.title}
                   </h3>
-                  <p className="text-xs font-semibold text-slate-500 mb-4 leading-snug">
+                  <p className="text-[11px] sm:text-xs font-semibold text-slate-500 mb-3 leading-snug">
                     {path.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                  <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed mb-4 sm:mb-5">
                     {path.description}
                   </p>
 
                   {/* Benefits List */}
-                  <div className="border-t border-slate-100 pt-5 mb-8">
-                    <p className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                  <div className="border-t border-slate-100 pt-3.5 mb-5 sm:mb-6">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">
                       Included Highlights
                     </p>
-                    <ul className="space-y-2.5">
+                    <ul className="space-y-1.5 sm:space-y-2">
                       {path.benefits.map((benefit, bIndex) => (
-                        <li key={bIndex} className="flex items-start text-xs sm:text-[13px] text-slate-700">
-                          <CheckCircle2 className="w-4 h-4 text-blue-600 mr-2 shrink-0 mt-0.5" />
+                        <li key={bIndex} className="flex items-start text-[11px] sm:text-xs text-slate-700 leading-snug">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 mr-1.5 shrink-0 mt-0.5" />
                           <span>{benefit}</span>
                         </li>
                       ))}
@@ -170,10 +175,10 @@ export default function WhereDoYouFitIn() {
                 {/* Action CTA Button */}
                 <Link
                   href={path.ctaHref}
-                  className={`inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl text-sm font-bold text-white bg-gradient-to-r ${path.accentGradient} hover:opacity-95 transition-all shadow-md group/btn`}
+                  className={`inline-flex items-center justify-center gap-1.5 w-full py-2.5 sm:py-3 px-3.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r ${path.accentGradient} hover:opacity-95 transition-all shadow-xs active:scale-[0.98] group/btn`}
                 >
                   <span>{path.ctaText}</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-1" />
                 </Link>
               </div>
             );

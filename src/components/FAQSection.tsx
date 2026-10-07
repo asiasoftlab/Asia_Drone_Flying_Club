@@ -66,7 +66,7 @@ const categoryTabs = [
   { id: "general", label: "General & Safety" },
   { id: "gameplay", label: "Game & Arenas" },
   { id: "institutions", label: "Schools & Corporates" },
-  { id: "kits", label: "Kits & Products" },
+  { id: "kits", label: "Kits & Gear" },
 ];
 
 export default function FAQSection() {
@@ -83,21 +83,26 @@ export default function FAQSection() {
   };
 
   return (
-    <section id="faq" className="w-full bg-white text-slate-900 py-16 sm:py-24 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
-      <div className="max-w-10xl mx-auto relative z-10">
+    <section 
+      id="faq" 
+      className="w-full bg-slate-50/50 text-slate-900 py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-10 lg:px-16 relative overflow-hidden"
+    >
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <h2 className="text-3xl sm:text-5xl lg:text-[52px] font-serif font-normal tracking-tight text-slate-950 mb-5">
+        <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+          <span className="inline-block text-[11px] sm:text-xs font-bold tracking-widest uppercase text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3">
+            Got Questions?
+          </span>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-normal tracking-tight text-slate-950 mb-3 leading-tight">
             Frequently Asked Questions
           </h2>
-
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-slate-600 font-normal leading-relaxed max-w-xl mx-auto px-2">
             Everything you need to know about drone soccer, safety compliance, arena setup, and kit procurement.
           </p>
         </div>
 
-        {/* Filter Categories */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-10">
+        {/* Filter Categories (Touch-scrollable on mobile) */}
+        <div className="flex items-center justify-start sm:justify-center gap-2 sm:gap-2.5 overflow-x-auto pb-3 mb-6 sm:mb-8 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
           {categoryTabs.map((tab) => (
             <button
               key={tab.id}
@@ -106,10 +111,10 @@ export default function FAQSection() {
                 setActiveTab(tab.id);
                 setOpenIndex(null);
               }}
-              className={`px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 activeTab === tab.id
-                  ? "bg-slate-950 text-white font-semibold shadow-sm"
-                  : "bg-slate-100 text-slate-600 hover:text-slate-950 hover:bg-slate-200 border border-slate-200/80"
+                  ? "bg-slate-950 text-white font-semibold shadow-xs"
+                  : "bg-white text-slate-600 hover:text-slate-950 hover:bg-slate-100 border border-slate-200/80"
               }`}
             >
               {tab.label}
@@ -118,41 +123,57 @@ export default function FAQSection() {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-3.5">
           {filteredFaqs.map((faq, index) => {
             const isOpen = openIndex === index;
 
             return (
               <div
                 key={index}
-                className="bg-white border border-slate-200/80 transition-colors"
+                className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden transition-all duration-200 shadow-xs"
               >
                 <button
                   type="button"
                   onClick={() => toggleFAQ(index)}
-                  className="w-full text-left px-6 py-5 sm:px-8 sm:py-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
+                  className="w-full text-left px-4 py-3.5 sm:px-6 sm:py-4.5 flex items-center justify-between gap-3 cursor-pointer focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base sm:text-lg font-semibold text-slate-900 leading-snug">
+                  <span className="text-xs sm:text-sm md:text-base font-semibold text-slate-900 leading-snug">
                     {faq.question}
                   </span>
-                  <span className="p-1 text-slate-500 shrink-0">
+                  <span className="p-1 rounded-lg bg-slate-50 border border-slate-200/70 text-slate-500 shrink-0">
                     {isOpen ? (
-                      <Minus className="w-5 h-5 text-blue-600" />
+                      <Minus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-600" />
                     ) : (
-                      <Plus className="w-5 h-5 text-slate-400 group-hover:text-slate-700" />
+                      <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-500" />
                     )}
                   </span>
                 </button>
 
                 {isOpen && (
-                  <div className="px-6 pb-6 sm:px-8 sm:pb-6 text-sm sm:text-base text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                  <div className="px-4 pb-4 sm:px-6 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
                     {faq.answer}
                   </div>
                 )}
               </div>
             );
           })}
+        </div>
+
+        {/* Still have questions helper card */}
+        <div className="mt-8 sm:mt-12 text-center bg-white border border-slate-200/80 rounded-2xl p-5 sm:p-7 shadow-xs">
+          <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-1">
+            Still have questions about drone soccer or programs?
+          </h4>
+          <p className="text-xs sm:text-sm text-slate-500 mb-4 max-w-md mx-auto">
+            Our team is happy to guide you with live demonstrations, venue measurements, and bulk program quotes.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-slate-950 hover:bg-blue-700 transition-colors shadow-xs active:scale-[0.98]"
+          >
+            Contact Our Support Team
+          </Link>
         </div>
       </div>
     </section>
