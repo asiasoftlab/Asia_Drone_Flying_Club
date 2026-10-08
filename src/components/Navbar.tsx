@@ -154,38 +154,37 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/80 backdrop-blur-md shadow-md border-b border-slate-200/80"
-          : "bg-white/95 backdrop-blur-sm border-b border-slate-200"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-white/80 backdrop-blur-md shadow-md border-b border-slate-200/80"
+        : "bg-white/95 backdrop-blur-sm border-b border-slate-200"
+        }`}
       onMouseLeave={() => {
         setActiveDropdown(null);
         setActiveSubIndex(0);
       }}
     >
       <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
-        <div className="flex items-center justify-between h-20 sm:h-24">
+        <div className="flex items-center justify-between h-24 sm:h-28 md:h-32">
           {/* Brand / Logo (Left) */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             onClick={closeMobileMenu}
             className="flex items-center gap-3 py-2 group shrink-0"
           >
-            <div className="transition-transform duration-200 group-hover:scale-[1.02]">
-              <Image 
-                src="/logo.png" 
-                alt="Asia Drone Flying Club Kerala by Asia Softlab India" 
-                width={270}
-                height={102}
+            <div className="transition-transform duration-200 group-hover:scale-[1.02] flex items-center">
+              <Image
+                src="/logo.png"
+                alt="Asia Drone Flying Club Kerala by Asia Softlab India"
+                width={380}
+                height={150}
                 priority
-                className="w-36 sm:w-44 md:w-52 lg:w-60 xl:w-64 h-auto object-contain" 
+                className="w-48 sm:w-60 md:w-72 lg:w-80 h-auto max-h-20 sm:max-h-24 object-contain"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-3 2xl:gap-5">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-4 2xl:gap-6">
             {navigationData.map((item) => {
               const isHovered = activeDropdown === item.name;
 
@@ -193,7 +192,7 @@ export default function Navbar() {
                 return (
                   <div
                     key={item.name}
-                    className="relative py-6"
+                    className="relative py-8"
                     onMouseEnter={() => {
                       setActiveDropdown(item.name);
                       setActiveSubIndex(0);
@@ -201,23 +200,20 @@ export default function Navbar() {
                   >
                     <button
                       type="button"
-                      className={`group relative flex items-center gap-1.5 px-3.5 xl:px-4 py-2 text-[15px] xl:text-[16px] 2xl:text-[17px] font-semibold tracking-normal cursor-pointer transition-colors ${
-                        isHovered
+                      className={`group relative flex items-center gap-1.5 px-3.5 xl:px-4 py-2 text-[15px] xl:text-[16px] 2xl:text-[17px] font-semibold tracking-normal cursor-pointer transition-colors ${isHovered
                           ? "text-blue-700"
                           : "text-slate-800 hover:text-blue-700"
-                      }`}
+                        }`}
                     >
                       <span>{item.name}</span>
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isHovered ? "rotate-180 text-blue-700" : "text-slate-500"
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${isHovered ? "rotate-180 text-blue-700" : "text-slate-500"
+                          }`}
                       />
                       {/* Underline hover effect */}
                       <span
-                        className={`absolute left-3.5 right-3.5 bottom-0.5 h-0.5 bg-blue-700 rounded-full transition-transform duration-300 ease-out origin-left ${
-                          isHovered ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                        }`}
+                        className={`absolute left-3.5 right-3.5 bottom-0.5 h-0.5 bg-blue-700 rounded-full transition-transform duration-300 ease-out origin-left ${isHovered ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                          }`}
                       />
                     </button>
                   </div>
@@ -243,7 +239,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wider uppercase text-white bg-slate-950 hover:bg-blue-700 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="hidden sm:inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-xl text-xs sm:text-sm font-bold tracking-wider uppercase text-white bg-slate-950 hover:bg-blue-700 shadow-md transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               GET IN TOUCH
             </Link>
@@ -253,7 +249,7 @@ export default function Navbar() {
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-              className="lg:hidden p-2 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors"
+              className="lg:hidden p-2.5 rounded-xl text-slate-800 hover:bg-slate-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-colors"
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6 stroke-[2.5]" />
@@ -304,19 +300,17 @@ export default function Navbar() {
                       key={sub.name}
                       href={sub.href}
                       onMouseEnter={() => setActiveSubIndex(idx)}
-                      className={`group flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-all ${
-                        isSelected
-                          ? "text-blue-700 bg-blue-50/80 translate-x-1"
-                          : "text-slate-700 hover:text-slate-950 hover:bg-slate-50"
-                      }`}
+                      className={`group flex items-center justify-between px-4 py-3 rounded-xl text-base font-bold transition-all ${isSelected
+                        ? "text-blue-700 bg-blue-50/80 translate-x-1"
+                        : "text-slate-700 hover:text-slate-950 hover:bg-slate-50"
+                        }`}
                     >
                       <span className="text-base sm:text-lg">{sub.name}</span>
                       <ArrowRight
-                        className={`w-4 h-4 transition-all duration-200 ${
-                          isSelected
-                            ? "opacity-100 translate-x-0 text-blue-700"
-                            : "opacity-0 -translate-x-2 text-slate-400 group-hover:opacity-100 group-hover:translate-x-0"
-                        }`}
+                        className={`w-4 h-4 transition-all duration-200 ${isSelected
+                          ? "opacity-100 translate-x-0 text-blue-700"
+                          : "opacity-0 -translate-x-2 text-slate-400 group-hover:opacity-100 group-hover:translate-x-0"
+                          }`}
                       />
                     </Link>
                   );
@@ -360,7 +354,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="lg:hidden fixed inset-x-0 top-full h-[calc(100dvh-80px)] sm:h-[calc(100dvh-96px)] z-50 bg-white border-t border-slate-200 shadow-2xl flex flex-col justify-between overflow-y-auto"
         >
           <div className="px-5 py-6 space-y-2">
@@ -377,9 +371,8 @@ export default function Navbar() {
                     >
                       <span>{item.name}</span>
                       <ChevronDown
-                        className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${
-                          isExpanded ? "rotate-180 text-blue-700" : ""
-                        }`}
+                        className={`w-5 h-5 text-slate-500 transition-transform duration-200 ${isExpanded ? "rotate-180 text-blue-700" : ""
+                          }`}
                       />
                     </button>
 
@@ -401,7 +394,7 @@ export default function Navbar() {
                             <p className="text-xs text-slate-500 leading-snug">{sub.description}</p>
                           </Link>
                         ))}
-                        
+
                         {item.ctaHref && (
                           <div className="pt-2">
                             <Link

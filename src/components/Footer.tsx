@@ -11,7 +11,7 @@ export default function Footer() {
       {/* Decorative Subtle Background Accents */}
       <div className="absolute -top-32 left-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-blue-400/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 right-1/4 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-sky-400/15 rounded-full blur-3xl pointer-events-none" />
-      
+
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 py-10 sm:py-14 lg:py-16 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10">
