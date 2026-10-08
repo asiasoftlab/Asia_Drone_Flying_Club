@@ -13,7 +13,7 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 1,
-    image: "/hero/slide1.png",
+    image: "/hero/Slide1.png",
     alt: "Asia Drone Flying Club - ATMOS S Soccer Drone Kit",
   }
 ];
