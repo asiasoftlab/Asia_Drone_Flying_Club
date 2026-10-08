@@ -164,7 +164,7 @@ export default function Navbar() {
         setActiveSubIndex(0);
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20">
         <div className="flex items-center justify-between h-20 sm:h-24">
           {/* Brand / Logo (Left) */}
           <Link 
@@ -179,13 +179,13 @@ export default function Navbar() {
                 width={270}
                 height={102}
                 priority
-                className="w-36 sm:w-48 md:w-56 h-auto object-contain" 
+                className="w-36 sm:w-44 md:w-52 lg:w-60 xl:w-64 h-auto object-contain" 
               />
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-3 2xl:gap-5">
             {navigationData.map((item) => {
               const isHovered = activeDropdown === item.name;
 
@@ -201,7 +201,7 @@ export default function Navbar() {
                   >
                     <button
                       type="button"
-                      className={`group relative flex items-center gap-1.5 px-4 py-2 text-[16px] xl:text-[17px] font-medium tracking-normal cursor-pointer transition-colors ${
+                      className={`group relative flex items-center gap-1.5 px-3.5 xl:px-4 py-2 text-[15px] xl:text-[16px] 2xl:text-[17px] font-semibold tracking-normal cursor-pointer transition-colors ${
                         isHovered
                           ? "text-blue-700"
                           : "text-slate-800 hover:text-blue-700"
@@ -215,7 +215,7 @@ export default function Navbar() {
                       />
                       {/* Underline hover effect */}
                       <span
-                        className={`absolute left-4 right-4 bottom-0.5 h-0.5 bg-blue-700 rounded-full transition-transform duration-300 ease-out origin-left ${
+                        className={`absolute left-3.5 right-3.5 bottom-0.5 h-0.5 bg-blue-700 rounded-full transition-transform duration-300 ease-out origin-left ${
                           isHovered ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                         }`}
                       />
@@ -229,11 +229,11 @@ export default function Navbar() {
                   key={item.name}
                   href={item.href}
                   onMouseEnter={() => setActiveDropdown(null)}
-                  className="group relative px-4 py-2 text-[16px] xl:text-[17px] font-medium tracking-normal text-slate-800 hover:text-blue-700 transition-colors"
+                  className="group relative px-3.5 xl:px-4 py-2 text-[15px] xl:text-[16px] 2xl:text-[17px] font-semibold tracking-normal text-slate-800 hover:text-blue-700 transition-colors"
                 >
                   <span>{item.name}</span>
                   {/* Underline hover effect */}
-                  <span className="absolute left-4 right-4 bottom-0.5 h-0.5 bg-blue-700 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
+                  <span className="absolute left-3.5 right-3.5 bottom-0.5 h-0.5 bg-blue-700 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
                 </Link>
               );
             })}
@@ -243,7 +243,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               href="/contact"
-              className="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider uppercase text-white bg-slate-950 hover:bg-blue-700 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="hidden sm:inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-xl text-xs sm:text-sm font-bold tracking-wider uppercase text-white bg-slate-950 hover:bg-blue-700 shadow-sm transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
               GET IN TOUCH
             </Link>
@@ -268,7 +268,7 @@ export default function Navbar() {
       {/* Desktop Phenomenon-style Mega Dropdown Panel */}
       {activeNavItem && activeNavItem.items && (
         <div className="hidden lg:block absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-2xl shadow-slate-900/15 animate-in fade-in slide-in-from-top-2 duration-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-14 2xl:px-20 py-8">
             <div className="grid grid-cols-12 gap-6 lg:gap-8 items-stretch">
               <div className="col-span-12 lg:col-span-3 flex flex-col justify-between p-7 rounded-2xl bg-slate-50 border border-slate-200/80">
                 <div className="space-y-3">
